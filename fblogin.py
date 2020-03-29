@@ -7,7 +7,7 @@ driver.get('https://www.facebook.com/')
  
 
 username_box = driver.find_element_by_id('email') 
-username_box.send_keys('user_emai_id') 
+username_box.send_keys('user_email_id') 
  
 
 password_box = driver.find_element_by_id('pass') 
