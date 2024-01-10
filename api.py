@@ -62,4 +62,61 @@ try:
 
 except requests.RequestException as e:
     print("Error:", e)
+//json format
+{
+  "entries": [
+    {
+      "service": "service1",
+      "operation": "operation1",
+      "endpoint": "/api/endpoint1"
+    },
+    {
+      "service": "service2",
+      "operation": "operation2",
+      "endpoint": "/api/endpoint2"
+    }
+  ]
+}
+//json parsing
+import json
+
+def read_json_file(file_path):
+    with open(file_path, 'r') as file:
+        data = json.load(file)
+    return data
+
+def main():
+    # Specify the path to your JSON file
+    json_file_path = 'input.json'
+
+    # Read data from the JSON file
+    json_data = read_json_file(json_file_path)
+
+    # Get the list of entries from the JSON data
+    entries_list = json_data.get('entries', [])
+
+    # Create a dictionary to store the information
+    result_dict = {}
+
+    # Populate the result dictionary for each entry
+    for entry in entries_list:
+        service_name = entry.get('service', '')
+        operation_name = entry.get('operation', '')
+        endpoint = entry.get('endpoint', '')
+
+        # Create a unique key for each entry based on service and operation
+        key = f"{service_name}_{operation_name}"
+
+        # Populate the result dictionary
+        result_dict[key] = {
+            'service': service_name,
+            'operation': operation_name,
+            'endpoint': endpoint
+        }
+
+    # Print the result dictionary
+    print("Result Dictionary:", result_dict)
+
+if __name__ == "__main__":
+    main()
 
