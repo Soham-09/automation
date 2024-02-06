@@ -1,3 +1,39 @@
+Action()
+{
+    // Define your parameter containing the number
+    char *parameter = "{your_parameter_name}";
+
+    // Get the length of the parameter
+    int length = strlen(parameter);
+
+    // Check if the length is less than 13
+    if (length < 13) {
+        // Calculate the number of zeros to add
+        int zeros_to_add = 13 - length;
+
+        // Create a new string to store the modified parameter
+        char modified_parameter[20]; // Assuming a maximum length of 20 for the modified parameter
+
+        // Add zeros to the beginning of the parameter
+        for (int i = 0; i < zeros_to_add; i++) {
+            modified_parameter[i] = '0';
+        }
+
+        // Copy the original parameter to the modified parameter after the added zeros
+        strncpy(modified_parameter + zeros_to_add, parameter, length + 1);
+
+        // Update the parameter with the modified value
+        lr_save_string(modified_parameter, "modified_parameter");
+
+        // Print the modified parameter for verification
+        lr_output_message("Modified Parameter: %s", modified_parameter);
+    } else {
+        // If the length is already 13 or more, no need to modify
+        lr_output_message("Parameter already has 13 or more digits.");
+    }
+
+    return 0;
+}
 //post json call
 import requests
 import json
