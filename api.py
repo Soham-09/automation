@@ -1,3 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebService Tester</title>
+</head>
+<body>
+    <form action="/execute" method="post">
+        <table border="1">
+            <tr>
+                <th>Select</th>
+                <th>Service Name</th>
+                <th>Status</th>
+                <th>Description</th>
+                <th>Details</th>
+            </tr>
+            {% for service_name in service_names %}
+            <tr>
+                <td><input type="checkbox" name="selected_services" value="{{ service_name }}"></td>
+                <td>{{ service_name }}</td>
+                <td><img src="{{ url_for('static', filename='green_icon.png') }}" alt="PASS"></td>
+                <td>{{ config['webServices'][loop.index0]['useCase'] }}</td>
+                <td><button type="button" onclick="showDetails('{{ service_name }}')">Details</button></td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <div>
+            <label>Iteration Counter: </label>
+            <input type="text" name="iteration_counter">
+        </div>
+
+        <div>
+            <button type="submit">Submit</button>
+            <button type="reset">Reset</button>
+        </div>
+    </form>
+
+    <script>
+        function showDetails(serviceName) {
+            // Implement logic to show details in a popup
+            alert('Details for ' + serviceName);
+        }
+    </script>
+</body>
+</html>
+///////////////
 Action()
 {
     // Define your parameter containing the number
