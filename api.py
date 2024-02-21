@@ -1,3 +1,35 @@
+#include "lrs.h"
+
+Action()
+{
+    // Connect to Virtual Table Server (VTS)
+    lrvtc_connect("vts_server_name", 8888, "vts_dataset_name", LR_AUTO);
+
+    // Retrieve data from VTS for account number and account type
+    lrvtc_retrieve_row("vts_query_name", "account_number", LR_LAST);
+    lrvtc_retrieve_row("vts_query_name", "account_type", LR_LAST);
+
+    // Get the values of account number and account type
+    char* accountNumber = lrvtc_get_value("account_number");
+    char* accountType = lrvtc_get_value("account_type");
+
+    // Generate claim ID (example: using timestamp)
+    char claimId[20];
+    sprintf(claimId, "CLAIM_%ld", time(NULL));
+
+    // Print account details and generated claim ID
+    lr_output_message("Account Number: %s", accountNumber);
+    lr_output_message("Account Type: %s", accountType);
+    lr_output_message("Generated Claim ID: %s", claimId);
+
+    // Store claim ID back into VTS for future use
+    lrvtc_store_value("claim_id", claimId);
+
+    // Disconnect from VTS
+    lrvtc_disconnect();
+
+    return 0;
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
