@@ -1,4 +1,57 @@
 #include "lrs.h"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pass Count Table</title>
+</head>
+<body>
+    <h1>Pass Count Table</h1>
+    <table border="1" id="passCountTable">
+        <thead>
+            <tr>
+                <th>Service Name</th>
+                <th>Pass Count</th>
+            </tr>
+        </thead>
+        <tbody id="passCountTableBody">
+            <!-- Pass count rows will be dynamically added here -->
+        </tbody>
+    </table>
+
+    <button id="submitButton">Submit</button>
+
+    <script>
+        document.getElementById("submitButton").addEventListener("click", function() {
+            fetch("/get_pass_counts")
+            .then(response => response.json())
+            .then(data => {
+                // Clear previous data
+                document.getElementById("passCountTableBody").innerHTML = "";
+                // Populate table with pass counts
+                data.forEach(item => {
+                    const serviceName = item.serviceName;
+                    const passCount = item.passCount;
+                    const row = document.createElement("tr");
+                    const serviceNameCell = document.createElement("td");
+                    serviceNameCell.textContent = serviceName;
+                    const passCountCell = document.createElement("td");
+                    passCountCell.textContent = passCount;
+                    row.appendChild(serviceNameCell);
+                    row.appendChild(passCountCell);
+                    document.getElementById("passCountTableBody").appendChild(row);
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
+
+
 
 Action()
 {
