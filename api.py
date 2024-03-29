@@ -1,3 +1,21 @@
+.popup {
+  display: none;
+  position: absolute;
+  width: 33.33%; /* 1/3 of the original window width */
+  height: 33.33vh; /* 1/3 of the original window height */
+  top: 33.33%; /* Center vertically */
+  left: 33.33%; /* Center horizontally */
+  background-color: #fff;
+  border: 1px solid #000;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.popup-content {
+  padding: 20px;
+}
+
+
+
 
 <div id="services-list">
     <div class="service">
