@@ -1,3 +1,58 @@
+
+<div id="services-list">
+    <div class="service">
+        <span>Service 1</span>
+        <button class="detail-button" onclick="showDetailModal(1)">Details</button>
+    </div>
+    <div class="service">
+        <span>Service 2</span>
+        <button class="detail-button" onclick="showDetailModal(2)">Details</button>
+    </div>
+    <!-- Add more services dynamically as needed -->
+</div>
+
+<!-- Modal -->
+<div id="detail-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeDetailModal()">&times;</span>
+        <h2>Response Details</h2>
+        <p id="response-details"></p>
+        <button onclick="downloadResponse()">Download</button>
+    </div>
+</div>
+
+<script>
+    // Function to show modal and load details
+    function showDetailModal(serviceId) {
+        var modal = document.getElementById("detail-modal");
+        var responseDetails = "Response details for Service " + serviceId + ": <br>Mock data goes here.";
+
+        document.getElementById("response-details").innerHTML = responseDetails;
+        modal.style.display = "block";
+    }
+
+    // Function to close modal
+    function closeDetailModal() {
+        var modal = document.getElementById("detail-modal");
+        modal.style.display = "none";
+    }
+
+    // Function to simulate downloading response
+    function downloadResponse() {
+        // Simulate downloading the response data
+        alert("Downloading response...");
+    }
+
+    // Close modal when clicking outside of it
+    window.onclick = function(event) {
+        var modal = document.getElementById("detail-modal");
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+
+
 #include "lrs.h"
 <!DOCTYPE html>
 <html lang="en">
