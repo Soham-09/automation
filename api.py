@@ -1,3 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Download Links</title>
+</head>
+<body>
+    <h1>Download Links</h1>
+    <div id="download-links">
+        <!-- Download links will be dynamically generated here -->
+    </div>
+
+    <script>
+        // Get the iteration counter value dynamically
+        const iterationCounter = 3; // Replace this with your actual dynamic value
+
+        // Function to create download links
+        function createDownloadLinks() {
+            const downloadLinksDiv = document.getElementById('download-links');
+            downloadLinksDiv.innerHTML = ''; // Clear previous links if any
+
+            for (let i = 1; i <= iterationCounter; i++) {
+                const link = document.createElement('a');
+                link.href = `/download/${i}`;
+                link.textContent = `Iteration #${i}`;
+                link.setAttribute('download', ''); // Add download attribute for better UX
+
+                const br = document.createElement('br'); // Add line break for better separation
+                downloadLinksDiv.appendChild(link);
+                downloadLinksDiv.appendChild(br);
+            }
+        }
+
+        // Call the function to create download links on page load
+        window.onload = createDownloadLinks;
+    </script>
+</body>
+</html>
+
+
+
+
+
 .popup {
   display: none;
   position: absolute;
