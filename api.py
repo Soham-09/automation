@@ -1,6 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Accordion Example</title>
+<style>
+  .accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+  }
+
+  .active, .accordion:hover {
+    background-color: #ccc;
+  }
+
+  .panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+  }
+</style>
+</head>
+<body>
+
+<h2>Accordion Example</h2>
+
+<div id="accordionContainer">
+</div>
+
+<script>
+  // Get the container div
+  var accordionContainer = document.getElementById('accordionContainer');
+
+  // Define the number of iterations
+  var iterationNumber = 2; // This value can be dynamic
+
+  // Create accordion elements based on the iteration number
+  for (var i = 1; i <= iterationNumber; i++) {
+    var accordion = document.createElement('button');
+    accordion.className = 'accordion';
+    accordion.textContent = 'Iteration #' + i;
+
+    var panel = document.createElement('div');
+    panel.className = 'panel';
+    panel.textContent = 'Content for Iteration #' + i;
+
+    accordion.addEventListener('click', function() {
+      this.classList.toggle('active');
+      var content = this.nextElementSibling;
+      if (content.style.maxHeight) {
+        content.style.maxHeight = null;
+      } else {
+        content.style.maxHeight = content.scrollHeight + 'px';
+      }
+    });
+
+    accordionContainer.appendChild(accordion);
+    accordionContainer.appendChild(panel);
+  }
+</script>
+
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dynamic Download Links</title>
