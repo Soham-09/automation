@@ -1,3 +1,21 @@
+<span id="error_message" style="color: red;"></span>
+
+<script>
+  document.getElementById("iteration_counter").addEventListener("input", function() {
+    var input = parseInt(this.value);
+    var errorMessage = document.getElementById("error_message");
+    
+    if (input < 1 || input > 30) {
+      errorMessage.textContent = "Please enter a value between 1 and 30.";
+      this.value = "";
+    } else {
+      errorMessage.textContent = "";
+    }
+  });
+</script>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
